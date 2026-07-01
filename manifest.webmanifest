@@ -1,0 +1,16 @@
+{
+  "name": "Level 12 World Cup Sweepstake",
+  "short_name": "L12 Sweepstake",
+  "description": "2026 FIFA World Cup office sweepstake for Level 12 — leaderboard, business unit standings, bracket, odds and schedule.",
+  "start_url": "./Level12_Sweepstake_Portal.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0c0d11",
+  "theme_color": "#0c0d11",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
