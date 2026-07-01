@@ -76,10 +76,10 @@
     font-family:inherit;transition:background .15s,border-color .15s}
   .theme-toggle:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.26)}
   .theme-toggle .ic{font-size:.85rem;line-height:1}
-  .asof{display:inline-flex;align-items:center;gap:6px;background:transparent;
-    border:none;padding:0;font-size:.7rem;
-    color:#9a9d9f;white-space:nowrap}
-  .asof::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
+  .asof{display:inline-flex;align-items:flex-start;gap:6px;background:transparent;
+    border:none;padding:0;font-size:.7rem;max-width:220px;text-align:right;
+    color:#9a9d9f}
+  .asof::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px}
   .statbar{display:flex;border-top:1px solid rgba(255,255,255,.08)}
   .stat{flex:1;padding:10px 14px 12px;min-width:0}
   .stat+.stat{border-left:1px solid rgba(255,255,255,.07)}
@@ -468,7 +468,8 @@
    status: "in" (through), "pend" (final group game today), "out" (eliminated)
    stage:  "r32","r16","qf","sf","third","final","champion"  (furthest reached)
    ============================================================ */
-const ASOF = "1 July 2026 — Round of 32 underway: Netherlands eliminated on penalties by Morocco; Norway, France and Mexico through to the last 16 — England, Belgium & USA still to play";
+const ASOF_DATE = "1 July 2026";
+const ASOF = "Round of 32 underway: Netherlands eliminated on penalties by Morocco; Norway, France and Mexico through to the last 16 — England, Belgium & USA still to play.";
 
 const FLAGS = {
  "Mexico":"🇲🇽","South Korea":"🇰🇷","South Africa":"🇿🇦","Czechia":"🇨🇿","Canada":"🇨🇦",
@@ -710,8 +711,7 @@ function renderLeaderboard(){
   const lead = rows.slice().sort((a,b)=>b.total-a.total)[0];
   if(lead){
     document.getElementById('lbnote').innerHTML =
-      `<b>${lead.staff}</b> leads the office sweepstake on ${lead.total} pts with ${FLAGS[lead.name]||''} <b>${lead.name}</b> (${badge(lead.status)}). `+
-      `The group stage is complete and all 32 Round-of-32 qualifiers are confirmed — points update as the knockout bracket plays out.`;
+      `<b>${lead.staff}</b> leads the office sweepstake on ${lead.total} pts with ${FLAGS[lead.name]||''} <b>${lead.name}</b> (${badge(lead.status)}). ${ASOF}`;
   }
 }
 
@@ -987,7 +987,7 @@ function renderSchedule(){
 }
 
 /* ===================== INIT ===================== */
-document.getElementById('asof').textContent = "Updated as of "+ASOF;
+document.getElementById('asof').textContent = "Updated "+ASOF_DATE;
 (function(){
  const L=staffList().sort((a,b)=>b.total-a.total)[0];
  document.getElementById('statLeader').textContent = `${L.staff} · ${L.total} pts`;
