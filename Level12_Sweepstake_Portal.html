@@ -58,18 +58,18 @@
   header{background:var(--headbg);color:#fff;position:relative;overflow:hidden;
     background-image:radial-gradient(70% 120% at 100% -20%,rgba(201,162,39,.08),transparent 60%),
       linear-gradient(180deg,rgba(255,255,255,.02),transparent 26%)}
-  .head-top{display:flex;align-items:center;gap:16px;padding:20px 0 17px}
-  .crest{width:48px;height:48px;flex:none;border-radius:10px;position:relative;
+  .head-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;padding-top:20px;padding-bottom:17px}
+  .crest{width:48px;height:48px;border-radius:10px;position:relative;
     background:var(--accent);border:1px solid rgba(255,255,255,.18);
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 1px 2px rgba(0,0,0,.3)}
   .crest b{font-size:1rem;font-weight:800;letter-spacing:-.02em;color:#0b0c10;line-height:1}
-  .head-id{min-width:0;flex:1}
-  .eyebrow{display:inline-flex;align-items:center;font-size:.65rem;font-weight:700;letter-spacing:.16em;
-    color:var(--headsub);text-transform:uppercase;margin-bottom:5px}
+  .head-id{min-width:0;max-width:100%}
+  .eyebrow{display:block;font-size:.65rem;font-weight:700;letter-spacing:.16em;
+    color:var(--headsub);text-transform:uppercase;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   header h1{margin:0;font-size:1.42rem;font-weight:700;letter-spacing:-.02em;color:#fff;line-height:1.15}
   header .sub{color:var(--headsub);font-size:.8rem;margin-top:5px;letter-spacing:.005em}
-  .head-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none}
+  .head-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
   .theme-toggle{display:inline-flex;align-items:center;gap:6px;
     background:transparent;border:1px solid rgba(255,255,255,.14);color:#d7dade;
     padding:6px 11px;border-radius:7px;font-size:.72rem;font-weight:600;cursor:pointer;
@@ -272,11 +272,11 @@
   .prizetbl td:last-child{text-align:right;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
   @media(max-width:600px){
     .wrap{padding:0 14px}
-    .head-top{flex-wrap:wrap;gap:12px;padding:18px 0 14px}
+    .head-top{grid-template-columns:auto minmax(0,1fr);gap:12px;padding-top:18px;padding-bottom:14px}
     .crest{width:46px;height:46px}.crest b{font-size:.98rem}
     header h1{font-size:1.22rem}
     .eyebrow{letter-spacing:.18em}
-    .head-right{order:3;flex-direction:row;width:100%;justify-content:space-between;align-items:center;gap:8px}
+    .head-right{grid-column:1/-1;flex-direction:row;width:100%;justify-content:space-between;align-items:center;gap:8px}
     .statbar{flex-wrap:wrap}
     .stat{flex:0 0 50%;padding:10px 12px}
     .stat+.stat{border-left:none}
