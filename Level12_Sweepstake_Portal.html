@@ -210,6 +210,11 @@
   .tpwrap{max-width:280px}
   .tpwrap .bm{padding:0}
   .tpwrap .lin{display:none}
+  .col-body-split{display:flex;flex-direction:column;flex:1}
+  .side-group{display:flex;flex-direction:column;justify-content:space-around;flex:1}
+  .side-label{font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--accent);text-align:center;padding:5px 0}
+  .side-label-2{border-top:1px dashed var(--line);margin-top:6px}
   .matchgrid{grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
   .match{padding:13px 16px;transition:box-shadow .15s,border-color .15s}
   .match:hover{box-shadow:var(--shadow-lg);border-color:#d6dde3}
@@ -323,7 +328,7 @@
     </div>
   </div>
   <div class="wrap"><div class="statbar">
-    <div class="stat"><div class="k">Current stage</div><div class="v">Round of 32</div></div>
+    <div class="stat"><div class="k">Current stage</div><div class="v">Round of 16</div></div>
     <div class="stat"><div class="k">Teams remaining</div><div class="v" id="statRemain">—</div></div>
     <div class="stat"><div class="k">Sweepstake leader</div><div class="v" id="statLeader">—</div></div>
     <div class="stat"><div class="k">Final</div><div class="v">19 Jul · New Jersey</div></div>
@@ -466,7 +471,7 @@
 </div>
 
 <footer>
-  Built for the Level 12 office sweepstake · Data as of 2 July 2026 · Results &amp; odds from public sources, for fun only.
+  Built for the Level 12 office sweepstake · Data as of 4 July 2026 · Results &amp; odds from public sources, for fun only.
 </footer>
 
 <script>
@@ -475,8 +480,8 @@
    status: "in" (through), "pend" (final group game today), "out" (eliminated)
    stage:  "r32","r16","qf","sf","third","final","champion"  (furthest reached)
    ============================================================ */
-const ASOF_DATE = "2 July 2026";
-const ASOF = "Round of 32 winding down: England (Kane x2), Belgium (AET winner) and USA all through to the last 16, eliminating DR Congo, Senegal and Bosnia and Herzegovina. Spain, Portugal, Switzerland, Australia, Argentina and Colombia still to play their R32 ties.";
+const ASOF_DATE = "4 July 2026";
+const ASOF = "Round of 32 complete: Colombia beat Ghana 1–0 to join Spain, Portugal, Switzerland, Argentina, Egypt, England, Belgium, France, Norway, Mexico, Canada, Brazil, Morocco and Paraguay in the last 16. Round of 16 kicks off today (Canada v Morocco, Paraguay v France).";
 
 const FLAGS = {
  "Mexico":"🇲🇽","South Korea":"🇰🇷","South Africa":"🇿🇦","Czechia":"🇨🇿","Canada":"🇨🇦",
@@ -498,7 +503,7 @@ const TEAMS = [
  ["South Korea","A",25,1,0,2,"out",null,null],
  ["Czechia","A",41,0,1,2,"out",null,null],
 
- ["Switzerland","B",19,2,1,0,"in","r32",7000],
+ ["Switzerland","B",19,2,1,0,"in","r16",5000],
  ["Canada","B",30,1,1,1,"in","r16",25000],
  ["Bosnia and Herzegovina","B",71,1,1,1,"out","r32",null],
  ["Qatar","B",53,0,1,2,"out",null,null],
@@ -509,7 +514,7 @@ const TEAMS = [
  ["Haiti","C",79,0,0,3,"out",null,null],
 
  ["United States","D",16,2,0,1,"in","r16",3300],
- ["Australia","D",27,1,1,1,"in","r32",30000],
+ ["Australia","D",27,1,1,1,"out","r32",null],
  ["Paraguay","D",38,1,1,1,"in","r16",25000],
  ["Türkiye","D",22,1,0,2,"out",null,null],
 
@@ -524,33 +529,33 @@ const TEAMS = [
  ["Tunisia","F",47,0,0,3,"out",null,null],
 
  ["Belgium","G",9,1,2,0,"in","r16",3500],
- ["Egypt","G",33,1,2,0,"in","r32",20000],
+ ["Egypt","G",33,1,2,0,"in","r16",12000],
  ["Iran","G",21,0,3,0,"out",null,null],
  ["New Zealand","G",88,0,1,2,"out",null,null],
 
- ["Spain","H",2,2,1,0,"in","r32",650],
- ["Cabo Verde","H",70,0,3,0,"in","r32",50000],
+ ["Spain","H",2,2,1,0,"in","r16",560],
+ ["Cabo Verde","H",70,0,3,0,"out","r32",null],
  ["Uruguay","H",17,0,2,1,"out",null,null],
  ["Saudi Arabia","H",58,0,1,2,"out",null,null],
 
- ["France","I",1,3,0,0,"in","r16",250],
+ ["France","I",1,3,0,0,"in","r16",191],
  ["Norway","I",32,2,0,1,"in","r16",2500],
  ["Senegal","I",14,1,0,2,"out","r32",null],
  ["Iraq","I",56,0,0,3,"out",null,null],
 
- ["Argentina","J",3,3,0,0,"in","r32",400],
- ["Algeria","J",36,1,1,1,"in","r32",30000],
- ["Austria","J",24,1,1,1,"in","r32",25000],
+ ["Argentina","J",3,3,0,0,"in","r16",425],
+ ["Algeria","J",36,1,1,1,"out","r32",null],
+ ["Austria","J",24,1,1,1,"out","r32",null],
  ["Jordan","J",64,0,0,3,"out",null,null],
 
- ["Portugal","K",5,2,1,0,"in","r32",1300],
- ["Colombia","K",13,2,0,1,"in","r32",4000],
+ ["Portugal","K",5,2,1,0,"in","r16",1300],
+ ["Colombia","K",13,2,0,1,"in","r16",3000],
  ["Uzbekistan","K",57,0,0,3,"out",null,null],
  ["DR Congo","K",55,1,1,1,"out","r32",null],
 
  ["England","L",4,2,1,0,"in","r16",850],
- ["Ghana","L",73,1,2,0,"in","r32",30000],
- ["Croatia","L",11,1,1,1,"in","r32",8000],
+ ["Ghana","L",73,1,2,0,"out","r32",null],
+ ["Croatia","L",11,1,1,1,"out","r32",null],
  ["Panama","L",51,0,0,2,"out",null,null]
 ];
 
@@ -903,7 +908,13 @@ const RESULTS = {
  79:{a:2,b:0,w:"Mexico"},          // Mexico 2–0 Ecuador
  80:{a:2,b:1,w:"England"},         // England 2–1 DR Congo (Kane brace)
  81:{a:2,b:0,w:"United States"},   // United States 2–0 Bosnia and Herzegovina
- 82:{a:3,b:2,w:"Belgium"}          // Belgium 3–2 Senegal (AET, Tielemans 125')
+ 82:{a:3,b:2,w:"Belgium"},         // Belgium 3–2 Senegal (AET, Tielemans 125')
+ 84:{a:3,b:0,w:"Spain"},           // Spain 3–0 Austria
+ 85:{a:2,b:0,w:"Switzerland"},     // Switzerland 2–0 Algeria
+ 86:{a:3,b:2,w:"Argentina"},       // Argentina 3–2 Cabo Verde (AET, Romero 111')
+ 87:{a:2,b:1,w:"Portugal"},        // Portugal 2–1 Croatia (Ramos 90+4')
+ 88:{a:1,b:1,w:"Egypt",pen:"4–2"}, // Australia 1–1 Egypt (Egypt win 4–2 on pens)
+ 83:{a:1,b:0,w:"Colombia"}        // Colombia 1–0 Ghana (Jhon Arias 14')
 };
 function winnerOf(id){ return RESULTS[id] ? RESULTS[id].w : null; }
 function loserOf(id){
@@ -955,14 +966,26 @@ function matchHTML(id,col,isFirst){
 }
 function renderDraw(){
   const cols=["R32","R16","QF","SF","F"];
+  const SPLIT = {R32:true,R16:true,QF:true,SF:false,F:false};
   let html='';
   cols.forEach((col,ci)=>{
     const [h,sub]=COLHEAD[col];
-    let body='';
-    ORDERS[col].forEach(id=>body+=matchHTML(id,col,ci===0));
     const cap = col==="F" ? `<div class="finalcap">🏆 Champion lifts the trophy</div>` : '';
-    html+=`<div class="col"><div class="col-head">${h}<small>${sub}</small></div>
-      <div class="col-body">${body}</div>${cap}</div>`;
+    if(!SPLIT[col]){
+      let body='';
+      ORDERS[col].forEach(id=>body+=matchHTML(id,col,ci===0));
+      html+=`<div class="col"><div class="col-head">${h}<small>${sub}</small></div>
+        <div class="col-body">${body}</div>${cap}</div>`;
+    } else {
+      const ids=ORDERS[col], half=ids.length/2;
+      let topBody='', botBody='';
+      ids.slice(0,half).forEach(id=>topBody+=matchHTML(id,col,ci===0));
+      ids.slice(half).forEach(id=>botBody+=matchHTML(id,col,ci===0));
+      const body=`<div class="side-label">Top half of draw</div><div class="side-group">${topBody}</div>`+
+        `<div class="side-label side-label-2">Bottom half of draw</div><div class="side-group">${botBody}</div>`;
+      html+=`<div class="col"><div class="col-head">${h}<small>${sub}</small></div>
+        <div class="col-body-split">${body}</div></div>`;
+    }
   });
   document.getElementById('bracket').innerHTML=html;
 
@@ -989,7 +1012,7 @@ function renderDraw(){
 
   const nIn=TEAMS.filter(t=>t[6]==='in').length;
   document.getElementById('drawnote').innerHTML =
-    `Official FIFA knockout bracket — all <b>${nIn} Round-of-32 fixtures are confirmed</b> (source: FIFA.com / CBS Sports, 2 Jul 2026). `+
+    `Official FIFA knockout bracket — all <b>${nIn} Round-of-32 fixtures are confirmed</b> (source: FIFA.com / CBS Sports, 4 Jul 2026). `+
     `Each fixture shows the team and its Level 12 owner; Round of 16 onward fills in as winners advance.`;
 }
 
